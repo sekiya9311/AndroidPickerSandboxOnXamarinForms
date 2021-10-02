@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:hint="State"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+<!--    https://stackoverflow.com/questions/61581115/inputtype-none-doesnt-work-with-material-components-exposeddropdownmenu -->
+    <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none|textNoSuggestions"
+            android:cursorVisible="false"
+    />
+
+</com.google.android.material.textfield.TextInputLayout>

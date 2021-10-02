@@ -53,7 +53,9 @@
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="DropDownRendererAndroid.cs" />
         <Compile Include="MainActivity.cs" />
+        <Compile Include="MaterialComponentsContextThemeWrapper.cs" />
         <Compile Include="Resources\Resource.Designer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
@@ -63,6 +65,8 @@
         <None Include="Properties\AndroidManifest.xml" />
     </ItemGroup>
     <ItemGroup>
+        <AndroidResource Include="Resources\layout\drop_down.xml" />
+        <AndroidResource Include="Resources\layout\list_item_of_drop_down.xml" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
         <AndroidResource Include="Resources\layout\Toolbar.axml" />
         <AndroidResource Include="Resources\values\styles.xml" />
