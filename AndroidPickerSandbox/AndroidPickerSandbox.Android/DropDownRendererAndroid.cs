@@ -1,4 +1,5 @@
-﻿using Android.Content;
+﻿using System.Linq;
+using Android.Content;
 using Android.Views;
 using Android.Widget;
 using AndroidPickerSandbox;
@@ -41,9 +42,33 @@ namespace AndroidPickerSandbox.Android
             }
             
             if (_autoCompleteTextView == null) return;
-            ArrayAdapter adapter = new(Context!, Resource.Layout.list_item_of_drop_down, Element.Items);
+            ArrayAdapter adapter = new(
+                Context!,
+                Resource.Layout.list_item_of_drop_down,
+                Element.Items.Select(x => new Java.Lang.String(x)).ToList()
+            );
             _autoCompleteTextView.Adapter = adapter;
-            _autoCompleteTextView.Text = Element.SelectedItem.ToString();
+
+            _autoCompleteTextView.ItemClick += ItemClick;
+            if (Element.SelectedIndex >= 0)
+            {
+                _autoCompleteTextView.SetSelection(Element.SelectedIndex);
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_autoCompleteTextView != null)
+            {
+                _autoCompleteTextView.ItemClick -= ItemClick;
+            }
+            
+            base.Dispose(disposing);
+        }
+
+        private void ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            Element.SelectedIndex = e.Position;
         }
     }
 }

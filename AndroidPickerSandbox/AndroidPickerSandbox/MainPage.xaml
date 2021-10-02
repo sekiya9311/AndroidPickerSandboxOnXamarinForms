@@ -9,7 +9,7 @@
 
     <StackLayout Spacing="8">
         <local:DropDown Items="{Binding Items}"
-                        SelectedItem="{Binding SelectedItem}" />
+                        SelectedIndex="{Binding SelectedIndex}" />
         <StackLayout Orientation="Horizontal">
             <Label Text="Selected: " />
             <Label Text="{Binding SelectedItem}" />

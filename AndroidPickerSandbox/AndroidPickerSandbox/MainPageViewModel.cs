@@ -9,18 +9,21 @@ namespace AndroidPickerSandbox
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _selectedItem = "";
-        public string SelectedItem
+        private int _selectedIndex = -1;
+        public int SelectedIndex
         {
-            get => _selectedItem;
+            get => _selectedIndex;
             set
             {
-                if (_selectedItem == value) return;
-                _selectedItem = value;
+                if (_selectedIndex == value) return;
+                _selectedIndex = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedItem));
             }
         }
 
+        public string SelectedItem => Items.ElementAtOrDefault(SelectedIndex) ?? "";
+        
         private List<string> _items = new();
         public List<string> Items
         {
@@ -36,7 +39,7 @@ namespace AndroidPickerSandbox
         public MainPageViewModel()
         {
             Items = Enumerable.Range(0, 10).Select(i => i.ToString()).ToList();
-            SelectedItem = Items.First();
+            SelectedIndex = -1;
         }
         
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

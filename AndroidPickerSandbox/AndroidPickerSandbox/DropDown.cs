@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace AndroidPickerSandbox
 {
     public class DropDown : View
     {
-        public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
-            nameof(SelectedItem),
-            typeof(object),
+        public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
+            nameof(SelectedIndex),
+            typeof(int),
             typeof(DropDown),
             null,
             BindingMode.TwoWay
@@ -22,15 +23,15 @@ namespace AndroidPickerSandbox
             BindingMode.TwoWay
         );
 
-        public object SelectedItem
+        public int SelectedIndex
         {
-            get => GetValue(SelectedItemProperty);
-            set => SetValue(SelectedItemProperty, value);
+            get => (int)GetValue(SelectedIndexProperty);
+            set => SetValue(SelectedIndexProperty, value);
         }
 
-        public IList Items
+        public IList<string> Items
         {
-            get => (IList)GetValue(ItemsProperty);
+            get => (IList<string>)GetValue(ItemsProperty);
             set => SetValue(ItemsProperty, value);
         }
     }
