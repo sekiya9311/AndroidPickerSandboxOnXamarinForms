@@ -7,6 +7,13 @@ namespace AndroidPickerSandbox
 {
     public class DropDown : View
     {
+        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
+            nameof(Placeholder),
+            typeof(string),
+            typeof(DropDown),
+            ""
+        );
+        
         public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
             nameof(SelectedIndex),
             typeof(int),
@@ -22,6 +29,12 @@ namespace AndroidPickerSandbox
             Array.Empty<object>(),
             BindingMode.TwoWay
         );
+
+        public string Placeholder
+        {
+            get => (string)GetValue(PlaceholderProperty);
+            set => SetValue(PlaceholderProperty, value);
+        }
 
         public int SelectedIndex
         {

@@ -41,7 +41,11 @@ namespace AndroidPickerSandbox.Android
                 SetNativeControl(CreateNativeControl());
             }
             
-            if (_autoCompleteTextView == null) return;
+            if (_textInputLayout == null || _autoCompleteTextView == null) return;
+            
+            _textInputLayout.HintEnabled = !string.IsNullOrEmpty(Element.Placeholder);
+            _textInputLayout.Hint = Element.Placeholder;
+            
             ArrayAdapter adapter = new(
                 Context!,
                 Resource.Layout.list_item_of_drop_down,

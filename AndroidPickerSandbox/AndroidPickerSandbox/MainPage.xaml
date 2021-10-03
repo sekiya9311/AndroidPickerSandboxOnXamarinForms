@@ -8,7 +8,8 @@
     </ContentPage.BindingContext>
 
     <StackLayout Spacing="8">
-        <local:DropDown Items="{Binding Items}"
+        <local:DropDown Placeholder="Select value"
+                        Items="{Binding Items}"
                         SelectedIndex="{Binding SelectedIndex}" />
         <StackLayout Orientation="Horizontal">
             <Label Text="Selected: " />
