@@ -68,18 +68,21 @@ namespace AndroidPickerSandbox.Android
 
         private void ShowDialog()
         {
-            NumberPicker picker = new(_context);
-            picker.SetDisplayedValues(Element.Items.ToArray());
+            var inflater = LayoutInflater.FromContext(_context)!;
+            var view = (LinearLayout)inflater.Inflate(Resource.Layout.picker_dialog, null);
+            var picker = view.FindViewById<NumberPicker>(Resource.Id.number_picker)!;
+            
             picker.MinValue = 0;
             picker.MaxValue = Element.Items.Count - 1;
             if (Element.SelectedIndex >= 0)
             {
                 picker.Value = Element.SelectedIndex;
             }
+            picker.SetDisplayedValues(Element.Items.ToArray());
 
             MaterialAlertDialogBuilder builder = new(_context);
             builder
-                .SetView(picker)
+                .SetView(view)
                 .SetPositiveButton("OK", (s, e) =>
                 {
                     Element.SelectedIndex = picker.Value;
